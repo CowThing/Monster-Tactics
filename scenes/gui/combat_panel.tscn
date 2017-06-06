@@ -1,0 +1,107 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://scripts/gui/combat_gui_unit.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/backgrounds/field.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=1]
+
+resource/name = "CombatHealth-BuiltIn"
+script/source = "extends ProgressBar
+
+func _ready():
+	connect(\"resized\", self, \"_on_resized\")
+
+func _on_resized():
+	if get_size().x <= 16:
+		hide()
+	else:
+		show()
+
+func _draw():
+	VisualServer.canvas_item_set_clip(get_canvas_item(), true)
+"
+
+[node name="Panel" type="Panel"]
+
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 148.0
+margin/right = 0.0
+margin/bottom = -148.0
+script/script = ExtResource( 1 )
+right_side = false
+
+[node name="Back" type="TextureFrame" parent="."]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 264.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 32.0
+texture = ExtResource( 2 )
+stretch_mode = 4
+
+[node name="AttackPos" type="Position2D" parent="Back"]
+
+[node name="Health" type="ProgressBar" parent="."]
+
+anchor/top = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+percent/visible = false
+script/script = SubResource( 1 )
+
+[node name="Label" type="Label" parent="Health"]
+
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 64.0
+margin/bottom = 0.0
+custom_colors/font_color_shadow = Color( 0.0941176, 0.0784314, 0.145098, 1 )
+text = "HEALTH"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Tween" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+

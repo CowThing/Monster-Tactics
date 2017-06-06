@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://tilesets/main_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scripts/field.gd" type="Script" id=2]
+[ext_resource path="res://scripts/field_draw.gd" type="Script" id=3]
+[ext_resource path="res://scripts/field_tween.gd" type="Script" id=4]
+
+[node name="Field" type="TileMap"]
+
+process/pause_mode = 1
+mode = 2
+tile_set = ExtResource( 1 )
+cell/size = Vector2( 32, 32 )
+cell/quadrant_size = 8
+cell/custom_transform = Matrix32( 64, 0, -32, 32, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray(  )
+script/script = ExtResource( 2 )
+
+[node name="Background" type="CanvasLayer" parent="."]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="ColorFrame" type="ColorFrame" parent="Background"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+color = Color( 0, 0.584314, 0.913725, 1 )
+
+[node name="Draw" type="Node2D" parent="."]
+
+script/script = ExtResource( 3 )
+
+[node name="OnTop" type="YSort" parent="."]
+
+transform/pos = Vector2( 0, -1 )
+sort/enabled = true
+
+[node name="Tween" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+script/script = ExtResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = false
+drag_margin/v_enabled = false
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[connection signal="tween_complete" from="Tween" to="Tween" method="_on_tween_complete"]
+
+

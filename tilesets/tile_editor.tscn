@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://assets/sprites/tiles/tile_editor.png" type="Texture" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Grass" type="Sprite" parent="."]
+
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 96, 32 )
+
+[node name="Building" type="Sprite" parent="."]
+
+transform/pos = Vector2( 64, 0 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 96, 0, 96, 32 )
+
+[node name="Water" type="Sprite" parent="."]
+
+transform/pos = Vector2( 128, 0 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 192, 0, 96, 32 )
+
+[node name="Road" type="Sprite" parent="."]
+
+transform/pos = Vector2( 192, 0 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 288, 0, 96, 32 )
+
+

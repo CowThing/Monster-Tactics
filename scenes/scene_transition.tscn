@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://scripts/scene_transition.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/screen_transition.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemShader" id=1]
+
+_code = {
+"fragment": "uniform texture transition_texture;
+uniform float cutoff;
+uniform color main_color;
+
+float less_than(float a, float b){
+	return max(sign(b - a), 0.0);
+}
+
+float transit = tex(transition_texture, SCREEN_UV).r;
+vec3 screen = texscreen(SCREEN_UV);
+
+vec3 col = (less_than(transit, cutoff) * main_color.rgb);
+col += (1.0 - less_than(transit, cutoff)) * screen;
+
+COLOR.rgb = col;",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+shader/shader = SubResource( 1 )
+shader/shading_mode = 0
+shader_param/transition_texture = ExtResource( 2 )
+shader_param/cutoff = 1.01
+shader_param/main_color = Color( 0.0941176, 0.0784314, 0.145098, 1 )
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "fade_in"
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorFrame:material/material:shader_param/cutoff")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.3 ),
+"transitions": FloatArray( 2, 1 ),
+"update": 0,
+"values": [ 0.0, 1.01 ]
+}
+
+[node name="SceneTransition" type="CanvasLayer"]
+
+layer = 2
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+script/script = ExtResource( 1 )
+
+[node name="ColorFrame" type="ColorFrame" parent="."]
+
+material/material = SubResource( 2 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+color = Color( 1, 1, 1, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/fade_in = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+

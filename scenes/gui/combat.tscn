@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://scripts/gui/combat_gui.gd" type="Script" id=1]
+[ext_resource path="res://scenes/gui/combat_panel.tscn" type="PackedScene" id=2]
+
+[node name="Combat" type="Control"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 1 )
+
+[node name="Background" type="ColorFrame" parent="."]
+
+visibility/opacity = 0.0
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+color = Color( 0.0941176, 0.0784314, 0.145098, 0.25098 )
+
+[node name="PanelLeft" parent="." instance=ExtResource( 2 )]
+
+editor/display_folded = true
+right_side = false
+
+[node name="Back" parent="PanelLeft"]
+
+editor/display_folded = true
+
+[node name="PanelRight" parent="." instance=ExtResource( 2 )]
+
+editor/display_folded = true
+anchor/left = 3
+anchor/right = 1
+right_side = true
+
+[node name="Back" parent="PanelRight"]
+
+anchor/left = 0
+anchor/right = 0
+margin/left = 0.0
+margin/right = 264.0
+
+[node name="Label" parent="PanelRight/Health"]
+
+anchor/left = 1
+anchor/right = 1
+margin/left = 64.0
+margin/right = 0.0
+
+[node name="Effects" type="Node2D" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[connection signal="tween_complete" from="Tween" to="." method="_on_tween_complete"]
+
+
+[editable path="PanelLeft"]
+[editable path="PanelRight"]

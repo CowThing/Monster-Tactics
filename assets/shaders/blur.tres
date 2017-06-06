@@ -1,0 +1,36 @@
+[gd_resource type="CanvasItemMaterial" load_steps=2 format=1]
+
+[sub_resource type="CanvasItemShader" id=1]
+
+_code = {
+"fragment": "float radius = 1.0;
+vec3 col = vec3(0);
+
+vec2 ps = vec2(1, 1) / vec2(800, 480); // Screen size is always (800, 480)
+
+col+= texscreen(SCREEN_UV+vec2(-radius,-radius) * ps);
+col+= texscreen(SCREEN_UV+vec2(0,-radius) * ps);
+col+= texscreen(SCREEN_UV+vec2(radius,-radius) * ps);
+
+col+= texscreen(SCREEN_UV+vec2(-radius,0) * ps);
+col+= texscreen(SCREEN_UV+vec2(0,0) * ps);
+col+= texscreen(SCREEN_UV+vec2(radius,0) * ps);
+
+col+= texscreen(SCREEN_UV+vec2(-radius,radius) * ps);
+col+= texscreen(SCREEN_UV+vec2(0,radius) * ps);
+col+= texscreen(SCREEN_UV+vec2(radius,radius) * ps);
+
+col/=9.0;
+COLOR.rgb=col;",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
+[resource]
+
+shader/shader = SubResource( 1 )
+shader/shading_mode = 1
+

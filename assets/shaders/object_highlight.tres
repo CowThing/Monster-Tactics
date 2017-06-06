@@ -1,0 +1,34 @@
+[gd_resource type="CanvasItemShader" format=1]
+
+[resource]
+
+_code = {
+"fragment": "uniform float outline_width=2.0;
+uniform color outline_color=vec4(0,0,0,1);
+
+vec4 col = tex(TEXTURE,UV);
+vec2 ps = TEXTURE_PIXEL_SIZE;
+float a;
+float maxa=col.a;
+float mina=col.a;
+a=tex(TEXTURE,UV+vec2(0,-outline_width)*ps).a;
+maxa=max(a,maxa); 
+mina=min(a,mina);
+a=tex(TEXTURE,UV+vec2(0,outline_width)*ps).a;
+maxa=max(a,maxa); 
+mina=min(a,mina);
+a=tex(TEXTURE,UV+vec2(-outline_width,0)*ps).a;
+maxa=max(a,maxa); 
+mina=min(a,mina);
+a=tex(TEXTURE,UV+vec2(outline_width,0)*ps).a;
+maxa=max(a,maxa); 
+mina=min(a,mina);
+
+COLOR=mix(col,outline_color,maxa-mina);",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+

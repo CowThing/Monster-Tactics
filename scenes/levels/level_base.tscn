@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://tilesets/tile_editor.tres" type="TileSet" id=1]
+[ext_resource path="res://scripts/levels/level_base.gd" type="Script" id=2]
+[ext_resource path="res://tilesets/tile_teams.tres" type="TileSet" id=3]
+
+[node name="Level" type="TileMap"]
+
+process/pause_mode = 1
+mode = 2
+tile_set = ExtResource( 1 )
+cell/size = Vector2( 32, 32 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 64, 0, -32, 32, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray(  )
+script/script = ExtResource( 2 )
+name = ""
+
+[node name="Units" type="TileMap" parent="."]
+
+process/pause_mode = 1
+mode = 2
+tile_set = ExtResource( 3 )
+cell/size = Vector2( 32, 32 )
+cell/quadrant_size = 8
+cell/custom_transform = Matrix32( 64, 0, -32, 32, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray(  )
+
+

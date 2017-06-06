@@ -1,0 +1,174 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://assets/sprites/tiles/floor.png" type="Texture" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Grass1" type="Sprite" parent="."]
+
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 96, 64 )
+
+[node name="Grass2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 64, 0 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 96, 0, 96, 64 )
+
+[node name="Grass3" type="Sprite" parent="."]
+
+transform/pos = Vector2( 128, 0 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 192, 0, 96, 64 )
+
+[node name="Grass4" type="Sprite" parent="."]
+
+transform/pos = Vector2( 192, 0 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 288, 0, 96, 64 )
+
+[node name="Building" type="Sprite" parent="."]
+
+transform/pos = Vector2( 192, 0 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 384, 0, 96, 64 )
+
+[node name="Road1" type="Sprite" parent="."]
+
+transform/pos = Vector2( -32, 32 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 480, 0, 96, 64 )
+
+[node name="Road2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 32, 32 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 576, 0, 96, 64 )
+
+[node name="Road3" type="Sprite" parent="."]
+
+transform/pos = Vector2( 96, 32 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 672, 0, 96, 64 )
+
+[node name="Road4" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 32 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 768, 0, 96, 64 )
+
+[node name="Road5" type="Sprite" parent="."]
+
+transform/pos = Vector2( 224, 32 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 864, 0, 96, 64 )
+
+[node name="Road6" type="Sprite" parent="."]
+
+transform/pos = Vector2( -64, 64 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 0, 64, 96, 64 )
+
+[node name="Road7" type="Sprite" parent="."]
+
+transform/pos = Vector2( 0, 64 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 96, 64, 96, 64 )
+
+[node name="Road8" type="Sprite" parent="."]
+
+transform/pos = Vector2( 64, 64 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 192, 64, 96, 64 )
+
+[node name="Road9" type="Sprite" parent="."]
+
+transform/pos = Vector2( 128, 64 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 288, 64, 96, 64 )
+
+[node name="Road10" type="Sprite" parent="."]
+
+transform/pos = Vector2( 192, 64 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 384, 64, 96, 64 )
+
+[node name="Road11" type="Sprite" parent="."]
+
+transform/pos = Vector2( -96, 96 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 480, 64, 96, 64 )
+
+[node name="Road12" type="Sprite" parent="."]
+
+transform/pos = Vector2( -32, 96 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 576, 64, 96, 64 )
+
+[node name="Road13" type="Sprite" parent="."]
+
+transform/pos = Vector2( 32, 96 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 672, 64, 96, 64 )
+
+[node name="Road14" type="Sprite" parent="."]
+
+transform/pos = Vector2( 96, 96 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 768, 64, 96, 64 )
+
+[node name="Road15" type="Sprite" parent="."]
+
+transform/pos = Vector2( 160, 96 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 864, 64, 96, 64 )
+
+[node name="Road16" type="Sprite" parent="."]
+
+transform/pos = Vector2( -128, 128 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 0, 128, 96, 64 )
+
+
