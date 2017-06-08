@@ -18,6 +18,7 @@ func _ready():
 
 func _on_screen_resized():
 	var new_window_size = OS.get_window_size()
+	OS.set_window_size(Vector2(max(base_size.x, new_window_size.x), max(base_size.y, new_window_size.y)))
 	
 	var scale_w = max(int(new_window_size.x / base_size.x), 1)
 	var scale_h = max(int(new_window_size.y / base_size.y), 1)
