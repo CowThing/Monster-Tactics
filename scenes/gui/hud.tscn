@@ -116,7 +116,6 @@ max_lines_visible = -1
 [node name="PopupPanel" type="PopupPanel" parent="."]
 
 process/pause_mode = 2
-editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true

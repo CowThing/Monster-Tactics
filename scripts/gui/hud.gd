@@ -23,6 +23,7 @@ func post_ready():
 
 func set_as_test_mode(is_test):
 	is_test_mode = is_test
+	get_node("PopupPanel/VBoxContainer/QuitButton").set_text("Leave Test" if is_test else "Main Menu")
 
 func _on_round_start():
 	for team in get_parent().turn_controller.teams:

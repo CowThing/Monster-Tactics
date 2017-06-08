@@ -60,6 +60,9 @@ func _ready():
 	# Initial map
 	new_map()
 
+func _enter_tree():
+	music_player.play_music("menu")
+
 func update_map():
 	seed(0)
 	field.build_map(current_map, false)

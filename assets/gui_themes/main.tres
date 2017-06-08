@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=47 format=1]
+[gd_resource type="Theme" load_steps=48 format=1]
 
 [ext_resource path="res://assets/sprites/gui/button.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/gui/focus.png" type="Texture" id=2]
@@ -309,6 +309,19 @@ border_size = 1
 border_blend = true
 draw_bg = true
 
+[sub_resource type="StyleBoxFlat" id=33]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.227451, 0.266667, 0.4, 1 )
+light_color = Color( 0.227451, 0.266667, 0.4, 1 )
+dark_color = Color( 0.227451, 0.266667, 0.4, 0 )
+border_size = 1
+border_blend = false
+draw_bg = false
+
 [sub_resource type="StyleBoxTexture" id=22]
 
 content_margin/left = -1.0
@@ -558,7 +571,7 @@ PopupMenu/icons/unchecked = SubResource( 7 )
 PopupMenu/styles/hover = SubResource( 20 )
 PopupMenu/styles/panel = SubResource( 21 )
 PopupMenu/styles/panel_disabled = null
-PopupMenu/styles/separator = null
+PopupMenu/styles/separator = SubResource( 33 )
 PopupPanel/styles/panel = SubResource( 18 )
 ProgressBar/colors/font_color = Color( 0.941176, 0.941176, 0.941176, 1 )
 ProgressBar/colors/font_color_shadow = Color( 0.0941176, 0.0784314, 0.145098, 1 )

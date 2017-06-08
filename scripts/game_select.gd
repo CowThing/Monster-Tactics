@@ -7,29 +7,14 @@ onready var field = preload("res://scenes/field.tscn").instance()
 func _ready():
 	get_node("Selection/Panel/HBoxContainer/Human/Controller").select(1)
 	
-	levels = get_levels()
+	levels = global.get_default_maps() + global.get_user_maps()
 	for level in levels:
 		get_node("Selection/Panel/MapSelect").add_item(level.name)
 	
 	add_child(field)
 	
-	get_node("Selection/Panel/MapSelect").select(randi() % (get_node("Selection/Panel/MapSelect").get_item_count() - 1))
+	get_node("Selection/Panel/MapSelect").select(randi() % get_node("Selection/Panel/MapSelect").get_item_count())
 	field.build_map(levels[get_node("Selection/Panel/MapSelect").get_selected()], false)
-
-func get_levels():
-	var dir = Directory.new()
-	var level_dir = "user://maps"
-	var results = []
-	
-	if dir.open(level_dir) == OK:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if not dir.current_is_dir():
-				results.append(load(level_dir + "/" + file_name))
-			file_name = dir.get_next()
-	
-	return results
 
 func _on_MapSelect_item_selected( index ):
 	get_node("SFX").play("button")
@@ -62,6 +47,6 @@ func _on_Controller_item_selected( index ):
 	get_node("SFX").play("button")
 
 func _on_RandomMap_pressed():
-	var r = randi() % (get_node("Selection/Panel/MapSelect").get_item_count() - 1)
+	var r = randi() % get_node("Selection/Panel/MapSelect").get_item_count()
 	get_node("Selection/Panel/MapSelect").select(r)
 	_on_MapSelect_item_selected(r)
