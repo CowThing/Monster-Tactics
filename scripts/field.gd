@@ -25,15 +25,16 @@ func _notification(what):
 	if what == NOTIFICATION_PREDELETE:
 		map.free()
 
-func build_map(template_scene, spawn_units=true):
-	var template = template_scene.instance()
-	var rect = template.get_used_rect()
+func build_map(template, spawn_units=true):
+	var rect = template.rect
 	map.build_map(rect.size.x, rect.size.y)
+	
+	clear_objects()
 	
 	# Map tiles
 	for i in range(map.grid.size()):
 		var cell = map.grid[i]
-		var tile = template.get_cellv(cell.pos)
+		var tile = template.get_tile(cell.pos)
 		cell.type = tile
 		map.connect_point(cell.pos)
 		
@@ -77,12 +78,10 @@ func build_map(template_scene, spawn_units=true):
 	
 	# Map units
 	if spawn_units:
-		var unit_cells = template.get_node("Units").get_used_cells()
 		var team_monster_count = 0
 		var team_human_count = 0
-		for i in range(unit_cells.size()):
-			var pos = unit_cells[i]
-			if template.get_node("Units").get_cellv(pos) == 0:
+		for pos in template.units:
+			if template.get_team_pos(pos) == 0:
 				var obj = monster_units[team_monster_count % monster_units.size()].new()
 				obj.team = 0
 				add_object(obj, pos)
@@ -95,7 +94,6 @@ func build_map(template_scene, spawn_units=true):
 				
 				team_human_count += 1
 	
-	template.free()
 	get_node("Camera2D").set_pos(map_to_world(map.rect.size * 0.5))
 
 func move_object(obj, to_pos):
@@ -129,6 +127,10 @@ func add_object(obj, pos):
 func free_object(obj):
 	objects.erase(obj.map_pos)
 	obj.queue_free()
+
+func clear_objects():
+	for obj in objects.values():
+		free_object(obj)
 
 func get_connected_range_cells(start_pos, position_array, cell_range):
 	var results = []

@@ -21,12 +21,13 @@ func build_map(width, height):
 	rect.size = Vector2(width, height)
 	
 	for i in range(grid.size()):
-		var cell = Cell.new()
-		cell.id = astar.get_available_point_id()
-		cell.pos = index_to_vec(i)
-		
-		grid[i] = cell
-		astar.add_point(cell.id, cell.pos)
+		if not get_cell(index_to_vec(i)):
+			var cell = Cell.new()
+			cell.id = astar.get_available_point_id()
+			cell.pos = index_to_vec(i)
+			
+			grid[i] = cell
+			astar.add_point(cell.id, cell.pos)
 
 func connect_point(pos):
 	var cell = get_cell(pos)

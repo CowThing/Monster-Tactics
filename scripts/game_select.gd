@@ -9,18 +9,16 @@ func _ready():
 	
 	levels = get_levels()
 	for level in levels:
-		var template = load(level).instance()
-		get_node("Selection/Panel/MapSelect").add_item(template.name)
-		template.free()
+		get_node("Selection/Panel/MapSelect").add_item(level.name)
 	
 	add_child(field)
 	
 	get_node("Selection/Panel/MapSelect").select(randi() % (get_node("Selection/Panel/MapSelect").get_item_count() - 1))
-	field.build_map(load(levels[get_node("Selection/Panel/MapSelect").get_selected()]), false)
+	field.build_map(levels[get_node("Selection/Panel/MapSelect").get_selected()], false)
 
 func get_levels():
 	var dir = Directory.new()
-	var level_dir = "res://scenes/levels"
+	var level_dir = "user://maps"
 	var results = []
 	
 	if dir.open(level_dir) == OK:
@@ -28,8 +26,7 @@ func get_levels():
 		var file_name = dir.get_next()
 		while file_name != "":
 			if not dir.current_is_dir():
-				if not file_name.begins_with("level_base"):
-					results.append(level_dir + "/" + file_name)
+				results.append(load(level_dir + "/" + file_name))
 			file_name = dir.get_next()
 	
 	return results
@@ -40,7 +37,7 @@ func _on_MapSelect_item_selected( index ):
 	field.free()
 	field = preload("res://scenes/field.tscn").instance()
 	add_child(field)
-	field.build_map(load(levels[index]), false)
+	field.build_map(levels[index], false)
 
 func _on_StartButton_pressed():
 	get_node("SFX").play("button")

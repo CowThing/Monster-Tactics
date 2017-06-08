@@ -1,0 +1,315 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://assets/gui_themes/main.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/gui/level_editor.gd" type="Script" id=2]
+[ext_resource path="res://scenes/field.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/gui/level_editor_team_draw.gd" type="Script" id=4]
+[ext_resource path="res://scripts/gui/level_editor_highlight.gd" type="Script" id=5]
+
+[node name="LevelEditor" type="Control"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 1.0
+margin/right = 0.0
+margin/bottom = -1.0
+script/script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+
+editor/display_folded = true
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 138.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="MapPanel" type="Control" parent="PanelContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 6.0
+margin/top = 6.0
+margin/right = 794.0
+margin/bottom = 336.0
+
+[node name="Viewport" type="Viewport" parent="PanelContainer/MapPanel"]
+
+rect = Rect2( 0, 0, 788, 330 )
+own_world = false
+world = null
+transparent_bg = false
+render_target/enabled = true
+render_target/v_flip = false
+render_target/clear_on_new_frame = true
+render_target/filter = false
+render_target/gen_mipmaps = false
+render_target/update_mode = 2
+audio_listener/enable_2d = false
+audio_listener/enable_3d = false
+physics/object_picking = false
+gui/disable_input = true
+
+[node name="Field" parent="PanelContainer/MapPanel/Viewport" instance=ExtResource( 3 )]
+
+[node name="TeamDraw" type="Node2D" parent="PanelContainer/MapPanel/Viewport"]
+
+script/script = ExtResource( 4 )
+
+[node name="Highlight" type="Node2D" parent="PanelContainer/MapPanel/Viewport"]
+
+script/script = ExtResource( 5 )
+
+[node name="ViewportSprite" type="ViewportSprite" parent="PanelContainer/MapPanel"]
+
+viewport = NodePath("../Viewport")
+centered = false
+
+[node name="PositionLabel" type="Label" parent="PanelContainer/MapPanel"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 1.0
+margin/top = 1.0
+margin/right = 75.0
+margin/bottom = 10.0
+custom_colors/font_color = Color( 0.14902, 0.168627, 0.266667, 1 )
+text = "Position: (0, 0)"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 6.0
+margin/top = 6.0
+margin/right = 219.0
+margin/bottom = 26.0
+alignment = 0
+
+[node name="NewButton" type="Button" parent="HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 51.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "New Map"
+flat = false
+
+[node name="Save" type="Button" parent="HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 55.0
+margin/top = 0.0
+margin/right = 110.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Save Map"
+flat = false
+
+[node name="Load" type="Button" parent="HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 114.0
+margin/top = 0.0
+margin/right = 169.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Load Map"
+flat = false
+
+[node name="OpenData" type="Button" parent="HBoxContainer"]
+
+hint/tooltip = "Open the \"user://\" data folder"
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 173.0
+margin/top = 0.0
+margin/right = 268.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Open Data Folder"
+flat = false
+
+[node name="TestButton" type="Button" parent="HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 272.0
+margin/top = 0.0
+margin/right = 326.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Test Map"
+flat = false
+
+[node name="TabContainer" type="TabContainer" parent="."]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 6.0
+margin/top = 62.0
+margin/right = 438.0
+margin/bottom = 131.0
+tab_align = 0
+tabs_visible = true
+
+[node name="Palette" type="ItemList" parent="TabContainer"]
+
+anchor/right = 1
+anchor/bottom = 1
+rect/min_size = Vector2( 424, 44 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 21.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="Teams" type="ItemList" parent="TabContainer"]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+
+[node name="BackButton" type="Button" parent="."]
+
+anchor/left = 1
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 43.0
+margin/top = 6.0
+margin/right = 6.0
+margin/bottom = 21.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "< Back"
+flat = true
+
+[node name="MapName" type="LineEdit" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 6.0
+margin/top = 30.0
+margin/right = 120.0
+margin/bottom = 49.0
+placeholder/text = "Map Name"
+placeholder/alpha = 0.6
+focus_mode = 2
+caret/caret_blink = true
+caret/caret_blink_speed = 0.65
+
+[node name="FileDialog" type="FileDialog" parent="."]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 128.0
+margin/top = 64.0
+margin/right = 128.0
+margin/bottom = 64.0
+popup/exclusive = false
+window/title = "Save a File"
+dialog/hide_on_ok = false
+mode = 4
+access = 1
+filters = StringArray( "*.tres;Map File" )
+show_hidden_files = false
+
+[connection signal="input_event" from="PanelContainer/MapPanel" to="." method="_on_MapPanel_input_event"]
+
+[connection signal="pressed" from="HBoxContainer/NewButton" to="." method="_on_NewButton_pressed"]
+
+[connection signal="pressed" from="HBoxContainer/Save" to="." method="_on_Save_pressed"]
+
+[connection signal="pressed" from="HBoxContainer/Load" to="." method="_on_Load_pressed"]
+
+[connection signal="pressed" from="HBoxContainer/OpenData" to="." method="_on_OpenData_pressed"]
+
+[connection signal="pressed" from="HBoxContainer/TestButton" to="." method="_on_TestButton_pressed"]
+
+[connection signal="tab_selected" from="TabContainer" to="." method="_on_TabContainer_tab_selected"]
+
+[connection signal="item_selected" from="TabContainer/Palette" to="." method="_on_Palette_item_selected"]
+
+[connection signal="item_selected" from="TabContainer/Teams" to="." method="_on_Teams_item_selected"]
+
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+
+[connection signal="text_entered" from="MapName" to="." method="_on_MapName_text_entered"]
+
+[connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]
+
+

@@ -16,6 +16,12 @@ signal round_end(winner)
 func _init(owner):
 	self.owner = owner
 
+func clear_teams():
+	for team in teams:
+		# Make sure the team isn't a deleted object
+		if weakref(team).get_ref():
+			team.free()
+
 func start_round(team_a, team_b):
 	teams.append(team_a.new())
 	teams.append(team_b.new())

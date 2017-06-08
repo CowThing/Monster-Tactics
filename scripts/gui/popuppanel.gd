@@ -18,4 +18,8 @@ func _on_RestartButton_pressed():
 func _on_QuitButton_pressed():
 	get_tree().get_current_scene().get_node("SFX").play("button")
 	hide()
-	scene_transition.goto_scene(load("res://scenes/mainmenu.tscn"))
+	
+	if get_parent().is_test_mode:
+		scene_transition.return_scene()
+	else:
+		scene_transition.goto_scene(load("res://scenes/mainmenu.tscn"))

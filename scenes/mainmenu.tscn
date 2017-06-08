@@ -89,7 +89,6 @@ color = Color( 1, 1, 1, 1 )
 
 [node name="Panel" type="Panel" parent="Menu"]
 
-editor/display_folded = true
 anchor/left = 3
 anchor/top = 3
 anchor/right = 3
@@ -127,9 +126,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 1
 size_flags/vertical = 2
 margin/left = 52.0
-margin/top = 28.0
+margin/top = 8.0
 margin/right = 180.0
-margin/bottom = 52.0
+margin/bottom = 32.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -144,13 +143,30 @@ focus/stop_mouse = true
 size_flags/horizontal = 1
 size_flags/vertical = 2
 margin/left = 52.0
-margin/top = 68.0
+margin/top = 48.0
 margin/right = 180.0
-margin/bottom = 92.0
+margin/bottom = 72.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "How To Play"
+flat = false
+
+[node name="LevelEditorButton" type="Button" parent="Menu/Panel/VBoxContainer"]
+
+rect/min_size = Vector2( 128, 24 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 1
+size_flags/vertical = 2
+margin/left = 52.0
+margin/top = 88.0
+margin/right = 180.0
+margin/bottom = 112.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Level Editor"
 flat = false
 
 [node name="SettingsButton" type="Button" parent="Menu/Panel/VBoxContainer"]
@@ -161,9 +177,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 1
 size_flags/vertical = 2
 margin/left = 52.0
-margin/top = 108.0
+margin/top = 128.0
 margin/right = 180.0
-margin/bottom = 132.0
+margin/bottom = 152.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -178,9 +194,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 1
 size_flags/vertical = 2
 margin/left = 52.0
-margin/top = 148.0
+margin/top = 168.0
 margin/right = 180.0
-margin/bottom = 172.0
+margin/bottom = 192.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -486,6 +502,8 @@ default/chorus_send = 0.0
 [connection signal="pressed" from="Menu/Panel/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 
 [connection signal="pressed" from="Menu/Panel/VBoxContainer/HowToButton" to="." method="_on_HowToButton_pressed"]
+
+[connection signal="pressed" from="Menu/Panel/VBoxContainer/LevelEditorButton" to="." method="_on_LevelEditorButton_pressed"]
 
 [connection signal="pressed" from="Menu/Panel/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 

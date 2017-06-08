@@ -3,6 +3,7 @@ extends CanvasLayer
 var PlayerTurnClass = preload("res://scripts/turn_states/player_turn.gd")
 
 var is_player_turn = false
+var is_test_mode = false
 
 var field
 
@@ -19,6 +20,9 @@ func post_ready():
 	get_node("Combat").connect("combat_finished", self, "_on_combat_finished")
 	
 	get_parent().turn_controller.connect("turn_end", get_node("UnitStats"), "_on_turn_end")
+
+func set_as_test_mode(is_test):
+	is_test_mode = is_test
 
 func _on_round_start():
 	for team in get_parent().turn_controller.teams:

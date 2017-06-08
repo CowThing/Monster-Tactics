@@ -2,7 +2,7 @@ extends Node
 
 func _ready():
 	music_player.play_music("menu")
-	get_node("Field").build_map(preload("res://scenes/levels/level0.tscn"), false)
+	get_node("Field").build_map(global.get_random_map(), false)
 	get_node("Menu/SettingsPopup/VBoxContainer/MusicSlider").set_value(AS.get_stream_global_volume_scale() * 10)
 	get_node("Menu/SettingsPopup/VBoxContainer/SoundSlider").set_value(AS.get_fx_global_volume_scale() * 10)
 
@@ -27,3 +27,6 @@ func _on_HowToButton_pressed():
 func _on_SettingsButton_pressed():
 	get_node("SFX").play("button")
 	get_node("Menu/SettingsPopup").popup()
+
+func _on_LevelEditorButton_pressed():
+	scene_transition.goto_scene(preload("res://scenes/gui/level_editor.tscn"))
