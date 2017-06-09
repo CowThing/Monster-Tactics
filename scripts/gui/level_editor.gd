@@ -15,6 +15,9 @@ var unitset = preload("res://tilesets/tile_teams.tres")
 var current_map
 var teams_pos = [[],[]]
 
+var history = preload("res://scripts/gui/level_editor_history.gd").new()
+var can_add_history = false
+
 onready var field = get_node("PanelContainer/MapPanel/Viewport/Field")
 onready var highlight = get_node("PanelContainer/MapPanel/Viewport/Highlight")
 onready var team_draw = get_node("PanelContainer/MapPanel/Viewport/TeamDraw")
@@ -30,6 +33,7 @@ func _ready():
 		return
 	call_ready_once = true
 	
+	set_process_input(true)
 	Globals.set("testing_mode", true)
 	
 	file_dialog.set_current_dir("user://maps")
@@ -88,6 +92,9 @@ func new_map():
 	map_name.set_text("")
 	update_teams()
 	update_map()
+	
+	history.clear_history()
+	history.add_history(current_map)
 
 func set_current_map(new_map):
 	current_map = new_map.duplicate()
@@ -100,12 +107,14 @@ func paint_tile(pos, type):
 		return
 	
 	if current_map.get_tile(pos) != type:
+		can_add_history = true
 		current_map.set_tile(pos, type)
 		update_map()
 
 func paint_unit(pos, team):
 	if not current_map.rect.has_point(pos):
 		return
+	can_add_history = true
 	
 	_erase_unit(pos)
 	
@@ -118,9 +127,6 @@ func paint_unit(pos, team):
 	team_draw.update()
 
 func _erase_unit(pos):
-	if not current_map.rect.has_point(pos):
-		return
-	
 	for team in teams_pos:
 		if team.has(pos):
 			team.erase(pos)
@@ -129,22 +135,40 @@ func _erase_unit(pos):
 	current_map.erase_team_pos(pos)
 
 func erase_unit(pos):
+	if not current_map.rect.has_point(pos):
+		return
+	can_add_history = true
+	
 	_erase_unit(pos)
 	team_draw.update()
 
+func _input(event):
+	if event.is_action_pressed("ui_undo"):
+		_on_UndoButton_pressed()
+		get_tree().set_input_as_handled()
+	elif event.is_action_pressed("ui_redo"):
+		_on_RedoButton_pressed()
+		get_tree().set_input_as_handled()
+
 func _on_MapPanel_input_event( ev ):
-	if ev.type == InputEvent.MOUSE_BUTTON and ev.pressed:
-		if current_paint_mode == PAINT_TILES:
-			if ev.button_index == BUTTON_LEFT:
-				paint_tile(target_pos, selected_tile)
-			else:
-				paint_tile(target_pos, 2)
+	if ev.type == InputEvent.MOUSE_BUTTON:
+		if ev.pressed:
+			can_add_history = false
+			if current_paint_mode == PAINT_TILES:
+				if ev.button_index == BUTTON_LEFT:
+					paint_tile(target_pos, selected_tile)
+				else:
+					paint_tile(target_pos, 2)
+				
+			elif current_paint_mode == PAINT_UNITS:
+				if ev.button_index == BUTTON_LEFT:
+					paint_unit(target_pos, selected_tile)
+				else:
+					erase_unit(target_pos)
 			
-		elif current_paint_mode == PAINT_UNITS:
-			if ev.button_index == BUTTON_LEFT:
-				paint_unit(target_pos, selected_tile)
-			else:
-				erase_unit(target_pos)
+		else:
+			if can_add_history:
+				history.add_history(current_map)
 	
 	if ev.type == InputEvent.MOUSE_MOTION:
 		var new_target_pos = field.world_to_map(field.get_viewport_transform().xform_inv(ev.pos))
@@ -186,6 +210,8 @@ func _on_FileDialog_file_selected( path ):
 		var new_file = load(path)
 		if new_file extends preload("res://assets/resources/map_resource.gd"):
 			set_current_map(new_file)
+			history.clear_history()
+			history.add_history(current_map)
 
 func _on_Save_pressed():
 	file_dialog.set_mode(FileDialog.MODE_SAVE_FILE)
@@ -217,3 +243,13 @@ func _on_NewButton_pressed():
 func _on_BackButton_pressed():
 	Globals.set("testing_mode", false)
 	scene_transition.goto_scene(load("res://scenes/mainmenu.tscn"))
+
+func _on_UndoButton_pressed():
+	var ret = history.undo()
+	if ret:
+		set_current_map(ret)
+
+func _on_RedoButton_pressed():
+	var ret = history.redo()
+	if ret:
+		set_current_map(ret)

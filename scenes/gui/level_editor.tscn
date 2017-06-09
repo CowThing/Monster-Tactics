@@ -83,6 +83,7 @@ centered = false
 
 [node name="PositionLabel" type="Label" parent="PanelContainer/MapPanel"]
 
+visibility/visible = false
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -96,100 +97,6 @@ text = "Position: (0, 0)"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-
-editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 6.0
-margin/top = 6.0
-margin/right = 219.0
-margin/bottom = 26.0
-alignment = 0
-
-[node name="NewButton" type="Button" parent="HBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 51.0
-margin/bottom = 20.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "New Map"
-flat = false
-
-[node name="Save" type="Button" parent="HBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 55.0
-margin/top = 0.0
-margin/right = 110.0
-margin/bottom = 20.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Save Map"
-flat = false
-
-[node name="Load" type="Button" parent="HBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 114.0
-margin/top = 0.0
-margin/right = 169.0
-margin/bottom = 20.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Load Map"
-flat = false
-
-[node name="OpenData" type="Button" parent="HBoxContainer"]
-
-hint/tooltip = "Open the \"user://\" data folder"
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 173.0
-margin/top = 0.0
-margin/right = 268.0
-margin/bottom = 20.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Open Data Folder"
-flat = false
-
-[node name="TestButton" type="Button" parent="HBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 272.0
-margin/top = 0.0
-margin/right = 326.0
-margin/bottom = 20.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Test Map"
-flat = false
 
 [node name="TabContainer" type="TabContainer" parent="."]
 
@@ -233,18 +140,180 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="BackButton" type="Button" parent="."]
+[node name="Panel" type="Panel" parent="."]
 
-anchor/left = 1
+editor/display_folded = true
 anchor/right = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 43.0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 32.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 6.0
 margin/top = 6.0
 margin/right = 6.0
-margin/bottom = 21.0
+margin/bottom = 6.0
+alignment = 0
+
+[node name="NewButton" type="Button" parent="Panel/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 51.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "New Map"
+flat = false
+
+[node name="Save" type="Button" parent="Panel/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 55.0
+margin/top = 0.0
+margin/right = 110.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Save Map"
+flat = false
+
+[node name="Load" type="Button" parent="Panel/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 114.0
+margin/top = 0.0
+margin/right = 169.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Load Map"
+flat = false
+
+[node name="OpenData" type="Button" parent="Panel/HBoxContainer"]
+
+hint/tooltip = "Open the \"user://\" data folder"
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 173.0
+margin/top = 0.0
+margin/right = 268.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Open Data Folder"
+flat = false
+
+[node name="Spacer" type="Control" parent="Panel/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 272.0
+margin/top = 0.0
+margin/right = 444.0
+margin/bottom = 20.0
+
+[node name="TestButton" type="Button" parent="Panel/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 448.0
+margin/top = 0.0
+margin/right = 502.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Test Map"
+flat = false
+
+[node name="UndoButton" type="Button" parent="Panel/HBoxContainer"]
+
+hint/tooltip = "Ctrl + Z"
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 506.0
+margin/top = 0.0
+margin/right = 536.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Undo"
+flat = false
+
+[node name="RedoButton" type="Button" parent="Panel/HBoxContainer"]
+
+hint/tooltip = "Ctrl + Y"
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 540.0
+margin/top = 0.0
+margin/right = 570.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Redo"
+flat = false
+
+[node name="Spacer1" type="Control" parent="Panel/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 574.0
+margin/top = 0.0
+margin/right = 746.0
+margin/bottom = 20.0
+
+[node name="BackButton" type="Button" parent="Panel/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 750.0
+margin/top = 0.0
+margin/right = 787.0
+margin/bottom = 20.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -258,11 +327,11 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 6.0
-margin/top = 30.0
-margin/right = 120.0
-margin/bottom = 49.0
+margin/top = 38.0
+margin/right = 150.0
+margin/bottom = 57.0
 placeholder/text = "Map Name"
-placeholder/alpha = 0.6
+placeholder/alpha = 0.5
 focus_mode = 2
 caret/caret_blink = true
 caret/caret_blink_speed = 0.65
@@ -290,23 +359,27 @@ show_hidden_files = false
 
 [connection signal="input_event" from="PanelContainer/MapPanel" to="." method="_on_MapPanel_input_event"]
 
-[connection signal="pressed" from="HBoxContainer/NewButton" to="." method="_on_NewButton_pressed"]
-
-[connection signal="pressed" from="HBoxContainer/Save" to="." method="_on_Save_pressed"]
-
-[connection signal="pressed" from="HBoxContainer/Load" to="." method="_on_Load_pressed"]
-
-[connection signal="pressed" from="HBoxContainer/OpenData" to="." method="_on_OpenData_pressed"]
-
-[connection signal="pressed" from="HBoxContainer/TestButton" to="." method="_on_TestButton_pressed"]
-
 [connection signal="tab_selected" from="TabContainer" to="." method="_on_TabContainer_tab_selected"]
 
 [connection signal="item_selected" from="TabContainer/Palette" to="." method="_on_Palette_item_selected"]
 
 [connection signal="item_selected" from="TabContainer/Teams" to="." method="_on_Teams_item_selected"]
 
-[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/NewButton" to="." method="_on_NewButton_pressed"]
+
+[connection signal="pressed" from="Panel/HBoxContainer/Save" to="." method="_on_Save_pressed"]
+
+[connection signal="pressed" from="Panel/HBoxContainer/Load" to="." method="_on_Load_pressed"]
+
+[connection signal="pressed" from="Panel/HBoxContainer/OpenData" to="." method="_on_OpenData_pressed"]
+
+[connection signal="pressed" from="Panel/HBoxContainer/TestButton" to="." method="_on_TestButton_pressed"]
+
+[connection signal="pressed" from="Panel/HBoxContainer/UndoButton" to="." method="_on_UndoButton_pressed"]
+
+[connection signal="pressed" from="Panel/HBoxContainer/RedoButton" to="." method="_on_RedoButton_pressed"]
+
+[connection signal="pressed" from="Panel/HBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
 
 [connection signal="text_entered" from="MapName" to="." method="_on_MapName_text_entered"]
 
