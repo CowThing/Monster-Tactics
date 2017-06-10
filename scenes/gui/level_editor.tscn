@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://assets/gui_themes/main.tres" type="Theme" id=1]
 [ext_resource path="res://scripts/gui/level_editor.gd" type="Script" id=2]
 [ext_resource path="res://scenes/field.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/gui/level_editor_team_draw.gd" type="Script" id=4]
 [ext_resource path="res://scripts/gui/level_editor_highlight.gd" type="Script" id=5]
+[ext_resource path="res://assets/sprites/gui/level_editor/pencil.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/gui/level_editor/floodfill.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/gui/level_editor/line.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/gui/level_editor/rectangle.png" type="Texture" id=9]
 
 [node name="LevelEditor" type="Control"]
 
@@ -16,9 +20,9 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 theme/theme = ExtResource( 1 )
 margin/left = 0.0
-margin/top = 1.0
+margin/top = 0.0
 margin/right = 0.0
-margin/bottom = -1.0
+margin/bottom = 0.0
 script/script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
@@ -140,7 +144,7 @@ margin/top = 32.0
 margin/right = 4.0
 margin/bottom = 4.0
 
-[node name="Panel" type="Panel" parent="."]
+[node name="ButtonPanel" type="Panel" parent="."]
 
 editor/display_folded = true
 anchor/right = 1
@@ -153,7 +157,7 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 32.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ButtonPanel"]
 
 anchor/right = 1
 anchor/bottom = 1
@@ -167,7 +171,7 @@ margin/right = 6.0
 margin/bottom = 6.0
 alignment = 0
 
-[node name="NewButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="NewButton" type="Button" parent="ButtonPanel/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -183,7 +187,7 @@ shortcut = null
 text = "New Map"
 flat = false
 
-[node name="Save" type="Button" parent="Panel/HBoxContainer"]
+[node name="Save" type="Button" parent="ButtonPanel/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -199,7 +203,7 @@ shortcut = null
 text = "Save Map"
 flat = false
 
-[node name="Load" type="Button" parent="Panel/HBoxContainer"]
+[node name="Load" type="Button" parent="ButtonPanel/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -215,7 +219,7 @@ shortcut = null
 text = "Load Map"
 flat = false
 
-[node name="OpenData" type="Button" parent="Panel/HBoxContainer"]
+[node name="OpenData" type="Button" parent="ButtonPanel/HBoxContainer"]
 
 hint/tooltip = "Open the \"user://\" data folder"
 focus/ignore_mouse = false
@@ -232,7 +236,7 @@ shortcut = null
 text = "Open Data Folder"
 flat = false
 
-[node name="Spacer" type="Control" parent="Panel/HBoxContainer"]
+[node name="Spacer" type="Control" parent="ButtonPanel/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -243,7 +247,7 @@ margin/top = 0.0
 margin/right = 444.0
 margin/bottom = 20.0
 
-[node name="TestButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="TestButton" type="Button" parent="ButtonPanel/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -259,7 +263,7 @@ shortcut = null
 text = "Test Map"
 flat = false
 
-[node name="UndoButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="UndoButton" type="Button" parent="ButtonPanel/HBoxContainer"]
 
 hint/tooltip = "Ctrl + Z"
 focus/ignore_mouse = false
@@ -276,7 +280,7 @@ shortcut = null
 text = "Undo"
 flat = false
 
-[node name="RedoButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="RedoButton" type="Button" parent="ButtonPanel/HBoxContainer"]
 
 hint/tooltip = "Ctrl + Y"
 focus/ignore_mouse = false
@@ -293,7 +297,7 @@ shortcut = null
 text = "Redo"
 flat = false
 
-[node name="Spacer1" type="Control" parent="Panel/HBoxContainer"]
+[node name="Spacer1" type="Control" parent="ButtonPanel/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -304,7 +308,7 @@ margin/top = 0.0
 margin/right = 746.0
 margin/bottom = 20.0
 
-[node name="BackButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="BackButton" type="Button" parent="ButtonPanel/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -319,6 +323,50 @@ enabled_focus_mode = 2
 shortcut = null
 text = "< Back"
 flat = true
+
+[node name="ToolPanel" type="Panel" parent="."]
+
+anchor/left = 1
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 358.0
+margin/top = 79.0
+margin/right = 6.0
+margin/bottom = 131.0
+
+[node name="ToolButtons" type="HButtonArray" parent="ToolPanel"]
+
+anchor/right = 1
+anchor/bottom = 1
+rect/min_size = Vector2( 0, 32 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 10.0
+margin/right = 4.0
+margin/bottom = 10.0
+flat = false
+button/count = 4
+button/min_button_size = 32.0
+button/align = 0
+button/0/text = ""
+button/0/tooltip = "Paint Tool"
+button/0/icon = ExtResource( 6 )
+button/1/text = ""
+button/1/tooltip = "Flood Fill Tool"
+button/1/icon = ExtResource( 7 )
+button/2/text = ""
+button/2/tooltip = "Line Tool"
+button/2/icon = ExtResource( 8 )
+button/3/text = ""
+button/3/tooltip = "Rectangle Tool"
+button/3/icon = ExtResource( 9 )
+button/selected = 0
 
 [node name="MapName" type="LineEdit" parent="."]
 
@@ -365,21 +413,23 @@ show_hidden_files = false
 
 [connection signal="item_selected" from="TabContainer/Teams" to="." method="_on_Teams_item_selected"]
 
-[connection signal="pressed" from="Panel/HBoxContainer/NewButton" to="." method="_on_NewButton_pressed"]
+[connection signal="pressed" from="ButtonPanel/HBoxContainer/NewButton" to="." method="_on_NewButton_pressed"]
 
-[connection signal="pressed" from="Panel/HBoxContainer/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="ButtonPanel/HBoxContainer/Save" to="." method="_on_Save_pressed"]
 
-[connection signal="pressed" from="Panel/HBoxContainer/Load" to="." method="_on_Load_pressed"]
+[connection signal="pressed" from="ButtonPanel/HBoxContainer/Load" to="." method="_on_Load_pressed"]
 
-[connection signal="pressed" from="Panel/HBoxContainer/OpenData" to="." method="_on_OpenData_pressed"]
+[connection signal="pressed" from="ButtonPanel/HBoxContainer/OpenData" to="." method="_on_OpenData_pressed"]
 
-[connection signal="pressed" from="Panel/HBoxContainer/TestButton" to="." method="_on_TestButton_pressed"]
+[connection signal="pressed" from="ButtonPanel/HBoxContainer/TestButton" to="." method="_on_TestButton_pressed"]
 
-[connection signal="pressed" from="Panel/HBoxContainer/UndoButton" to="." method="_on_UndoButton_pressed"]
+[connection signal="pressed" from="ButtonPanel/HBoxContainer/UndoButton" to="." method="_on_UndoButton_pressed"]
 
-[connection signal="pressed" from="Panel/HBoxContainer/RedoButton" to="." method="_on_RedoButton_pressed"]
+[connection signal="pressed" from="ButtonPanel/HBoxContainer/RedoButton" to="." method="_on_RedoButton_pressed"]
 
-[connection signal="pressed" from="Panel/HBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="ButtonPanel/HBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
+
+[connection signal="button_selected" from="ToolPanel/ToolButtons" to="." method="_on_ToolButtons_button_selected"]
 
 [connection signal="text_entered" from="MapName" to="." method="_on_MapName_text_entered"]
 

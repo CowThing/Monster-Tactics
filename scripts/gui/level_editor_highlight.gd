@@ -1,12 +1,22 @@
 extends Node2D
 
 var highlight_pos = null
+var highlight_array = []
 
 onready var field = get_node("../Field")
 onready var level_editor = get_node("../../../..")
 
+func get_grid_poly(pos):
+	return Vector2Array([
+		field.map_to_world(pos),
+		field.map_to_world(pos + Vector2(1, 0)),
+		field.map_to_world(pos + Vector2(1, 1)),
+		field.map_to_world(pos + Vector2(0, 1))
+	])
+
 func _draw():
-	if highlight_pos != null:
+	if highlight_pos != null or highlight_array.size() > 0:
+		# Grid
 		for i in range(9):
 			var s = field.map_to_world(Vector2(i, 0))
 			var e = field.map_to_world(Vector2(i, 8))
@@ -16,13 +26,16 @@ func _draw():
 			var e = field.map_to_world(Vector2(8, i))
 			draw_line(s, e, Color(1, 1, 1, 0.5))
 		
-		var v = Vector2Array([
-			field.map_to_world(highlight_pos),
-			field.map_to_world(highlight_pos + Vector2(1, 0)),
-			field.map_to_world(highlight_pos + Vector2(1, 1)),
-			field.map_to_world(highlight_pos + Vector2(0, 1))
-		])
-		
+		#Highlight Array
+		for p in highlight_array:
+			var v = get_grid_poly(p)
+			for i in range(v.size()):
+				draw_line(v[i], v[(i + 1) % v.size()], Color("fee761"), 2)
+			draw_circle(field.map_to_world_center(p), 8, Color("fee761"))
+	
+	# Highlight Cursor
+	if highlight_pos != null:
+		var v = get_grid_poly(highlight_pos)
 		for i in range(v.size()):
 			draw_line(v[i], v[(i + 1) % v.size()], Color("fee761"), 4)
 		
