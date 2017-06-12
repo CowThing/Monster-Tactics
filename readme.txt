@@ -1,1 +1,0 @@
-Music by 'Beau Buckley' www.fantasymusica.org CC-BY 3.0
