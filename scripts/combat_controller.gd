@@ -1,9 +1,6 @@
 extends Reference
 
-func start_battle(attacker, defender):
-	print(get_attack_list(attacker, defender))
-
-func get_attack_list(attacker, defender):
+func get_attack_list(attacker, defender, attacker_terrain, defender_terrain):
 	# [Unit, Damage]
 	var results = []
 	

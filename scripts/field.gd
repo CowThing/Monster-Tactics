@@ -16,6 +16,7 @@ var human_units = [
 
 var map = preload("res://scripts/map/map.gd").new(self)
 var objects = {}
+var scenery = []
 
 var floor_offset = Vector2(0, 16)
 
@@ -30,6 +31,7 @@ func build_map(template, spawn_units=true):
 	map.build_map(rect.size.x, rect.size.y)
 	
 	clear_objects()
+	clear_scenery()
 	
 	# Map tiles
 	for i in range(map.grid.size()):
@@ -45,6 +47,19 @@ func build_map(template, spawn_units=true):
 		if tile == 2:
 			# Water
 			cell.is_walkable = false
+		if tile == 4:
+			# Forest
+			var tree_offsets = [Vector2(-8, -8), Vector2(16, -8), Vector2(8, 8), Vector2(-16, 8)]
+			for i in range(4):
+				var tree = Sprite.new()
+				tree.set_texture(preload("res://assets/sprites/objects/tree.png"))
+				tree.set_hframes(2)
+				tree.set_frame(randi() % 2)
+				tree.set_offset(Vector2(0, -8))
+				add_scenery(tree, cell.pos)
+				
+				var rand_pos = Vector2(randi() % 8, randi() % 8) - Vector2(4, 4)
+				tree.set_pos(tree.get_pos() + tree_offsets[i] + rand_pos)
 	
 	# Visual tiles
 	for i in range(map.grid.size()):
@@ -52,8 +67,8 @@ func build_map(template, spawn_units=true):
 		var tile = cell.type
 		
 		var visual_tile = -1
-		if tile == 0:
-			# Grass
+		if tile == 0 or tile == 4:
+			# Grass or Forest
 			visual_tile = randi()%4
 			
 		elif tile == 1:
@@ -131,6 +146,17 @@ func free_object(obj):
 func clear_objects():
 	for obj in objects.values():
 		free_object(obj)
+
+func add_scenery(obj, pos):
+	obj.set_pos(map_to_world_center(pos))# + Vector2(0, -8))
+	scenery.append(obj)
+	get_node("OnTop").add_child(obj)
+
+func clear_scenery():
+	for obj in scenery:
+		obj.queue_free()
+	
+	scenery = []
 
 func get_connected_range_cells(start_pos, position_array, cell_range):
 	var results = []

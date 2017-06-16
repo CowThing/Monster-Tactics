@@ -9,30 +9,38 @@
 texture = ExtResource( 1 )
 centered = false
 region = true
-region_rect = Rect2( 0, 0, 96, 32 )
+region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="Building" type="Sprite" parent="."]
+
+transform/pos = Vector2( 32, 0 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 32, 0, 32, 32 )
+
+[node name="Water" type="Sprite" parent="."]
 
 transform/pos = Vector2( 64, 0 )
 texture = ExtResource( 1 )
 centered = false
 region = true
-region_rect = Rect2( 96, 0, 96, 32 )
+region_rect = Rect2( 64, 0, 32, 32 )
 
-[node name="Water" type="Sprite" parent="."]
+[node name="Road" type="Sprite" parent="."]
+
+transform/pos = Vector2( 96, 0 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 96, 0, 32, 32 )
+
+[node name="Forest" type="Sprite" parent="."]
 
 transform/pos = Vector2( 128, 0 )
 texture = ExtResource( 1 )
 centered = false
 region = true
-region_rect = Rect2( 192, 0, 96, 32 )
-
-[node name="Road" type="Sprite" parent="."]
-
-transform/pos = Vector2( 192, 0 )
-texture = ExtResource( 1 )
-centered = false
-region = true
-region_rect = Rect2( 288, 0, 96, 32 )
+region_rect = Rect2( 128, 0, 32, 32 )
 
 

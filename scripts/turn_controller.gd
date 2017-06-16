@@ -133,11 +133,11 @@ func object_attack(attacker, attack_pos):
 			call_deferred("emit_signal", "combat_finished")
 			return false
 		
-		var attack_list = combat_controller.get_attack_list(attacker, defender)
-		
-		remove_current_team()
 		var terrain_attacker = owner.field.map.get_cell(attacker.map_pos).type
 		var terrain_defender = owner.field.map.get_cell(defender.map_pos).type
+		var attack_list = combat_controller.get_attack_list(attacker, defender, terrain_attacker, terrain_defender)
+		
+		remove_current_team()
 		owner.hud.get_node("Combat").start_combat(attacker, defender, attack_list, terrain_attacker, terrain_defender)
 		yield(owner.hud.get_node("Combat"), "combat_finished")
 		add_current_team()

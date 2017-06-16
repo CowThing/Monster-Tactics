@@ -39,7 +39,7 @@ func _ready():
 	file_dialog.set_current_dir("user://maps")
 	
 	# Add buttons for the palettes
-	palette.set_max_columns(4)
+	palette.set_max_columns(10)
 	for id in tileset.get_tiles_ids():
 		var name = tileset.tile_get_name(id)
 		var tex = tileset.tile_get_texture(id)
@@ -50,7 +50,7 @@ func _ready():
 		palette.set_item_icon_region(palette.get_item_count() - 1, region)
 	palette.select(0)
 	
-	unit_palette.set_max_columns(4)
+	unit_palette.set_max_columns(10)
 	for id in unitset.get_tiles_ids():
 		var name = unitset.tile_get_name(id)
 		var tex = unitset.tile_get_texture(id)
@@ -113,8 +113,6 @@ func paint_tile(pos, type):
 		if current_map.get_team_pos(pos) != -1:
 			_erase_unit(pos)
 			team_draw.update()
-		
-		update_map()
 
 func paint_unit(pos, team):
 	if not current_map.rect.has_point(pos):
@@ -179,8 +177,10 @@ func _on_MapPanel_input_event( ev ):
 			if current_paint_mode == PAINT_TILES:
 				if ev.button_index == BUTTON_LEFT:
 					paint_tool.selected_tool.finish(target_pos)
+					update_map()
 				else:
 					paint_tool.eraser.finish(target_pos)
+					update_map()
 			
 			if can_add_history:
 				history.add_history(current_map)

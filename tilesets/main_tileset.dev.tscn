@@ -171,4 +171,12 @@ centered = false
 region = true
 region_rect = Rect2( 0, 128, 96, 64 )
 
+[node name="Forest1" type="Sprite" parent="."]
+
+transform/pos = Vector2( -64, 128 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 96, 128, 96, 64 )
+
 

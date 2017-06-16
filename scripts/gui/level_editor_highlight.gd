@@ -40,7 +40,7 @@ func _draw():
 			draw_line(v[i], v[(i + 1) % v.size()], Color("fee761"), 4)
 		
 		if level_editor.current_paint_mode == level_editor.PAINT_TILES:
-			var pos = v[0] - Vector2(32, 0)
+			var pos = v[0]
 			var tex = level_editor.tileset.tile_get_texture(level_editor.selected_tile)
 			var region = level_editor.tileset.tile_get_region(level_editor.selected_tile)
 			draw_texture_rect_region(tex, Rect2(pos, region.size), region, Color(1, 1, 1, 0.5))
