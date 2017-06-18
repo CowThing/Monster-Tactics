@@ -8,7 +8,7 @@ var backgrounds = [
 	preload("res://assets/sprites/backgrounds/rubble.png"),
 	preload("res://assets/sprites/backgrounds/water.png"),
 	preload("res://assets/sprites/backgrounds/road.png"),
-	preload("res://assets/sprites/backgrounds/field.png")
+	preload("res://assets/sprites/backgrounds/forest.png")
 ]
 
 onready var tween = get_node("Tween")

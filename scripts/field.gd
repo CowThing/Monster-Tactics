@@ -40,15 +40,14 @@ func build_map(template, spawn_units=true):
 		cell.type = tile
 		map.connect_point(cell.pos)
 		
-		if tile == 1:
-			# Building
+		if tile == map.TILE_BUILDING:
 			var build = preload("res://scripts/objects/building.gd").new()
 			add_object(build, cell.pos)
-		if tile == 2:
-			# Water
+			
+		if tile == map.TILE_WATER:
 			cell.is_walkable = false
-		if tile == 4:
-			# Forest
+			
+		if tile == map.TILE_FOREST:
 			var tree_offsets = [Vector2(-8, -8), Vector2(16, -8), Vector2(8, 8), Vector2(-16, 8)]
 			for i in range(4):
 				var tree = Sprite.new()
@@ -67,16 +66,13 @@ func build_map(template, spawn_units=true):
 		var tile = cell.type
 		
 		var visual_tile = -1
-		if tile == 0 or tile == 4:
-			# Grass or Forest
+		if tile == map.TILE_GRASS or tile == map.TILE_FOREST:
 			visual_tile = randi()%4
 			
-		elif tile == 1:
-			# Building
+		elif tile == map.TILE_BUILDING:
 			visual_tile = 4
 			
-		elif tile == 3:
-			# Road
+		elif tile == map.TILE_ROAD:
 			var count = 0
 			for i in range(map.neighbor_dirs.size()):
 				var dir = map.neighbor_dirs[i]
@@ -87,7 +83,7 @@ func build_map(template, spawn_units=true):
 				if check_cell.type == 3:
 					count |= 1 << i
 			
-			visual_tile = count + 5
+			visual_tile = count + 5 # Road tile offset
 		
 		set_cellv(cell.pos, visual_tile)
 	
@@ -196,3 +192,12 @@ func can_pass(start_cell, next_cell):
 			return false
 	
 	return true
+
+func connected_cost(start_cell, next_cell):
+	if objects.has(start_cell.pos):
+		var obj = objects[start_cell.pos]
+		
+		if not obj.aspects & obj.aspect.FLYING and next_cell.type == map.TILE_FOREST:
+			return 2
+	
+	return 1

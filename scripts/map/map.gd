@@ -5,6 +5,8 @@ var grid = []
 var rect = Rect2()
 var field
 
+enum tile_types {TILE_GRASS, TILE_BUILDING, TILE_WATER, TILE_ROAD, TILE_FOREST}
+
 var neighbor_dirs = [
 	Vector2(1, 0),
 	Vector2(0, -1),
@@ -81,7 +83,7 @@ func get_connected_cells(start_pos, max_distance):
 			if not next_cell:
 				continue
 			
-			var next_distance = 1 + distance[current_cell]
+			var next_distance = field.connected_cost(start_cell, next_cell) + distance[current_cell]
 			
 			if next_distance <= max_distance\
 			and not distance.has(next_cell)\

@@ -38,6 +38,9 @@ func highlight(arr):
 	owner.highlight.highlight_array = arr
 	owner.highlight.update()
 
+func update_map():
+	owner.update_map()
+
 class BaseTool:
 	var owner
 	var map
@@ -76,6 +79,7 @@ class PencilTool extends BaseTool:
 	
 	func _update(pos):
 		owner.paint(pos, self)
+		owner.update_map()
 
 class FloodTool extends BaseTool:
 	# Fill all connected tiles of the same type
