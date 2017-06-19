@@ -1,6 +1,5 @@
 extends Object
 
-var astar
 var grid = []
 var rect = Rect2()
 var field
@@ -16,7 +15,6 @@ var neighbor_dirs = [
 
 func _init(field):
 	self.field = field
-	self.astar = preload("res://scripts/map/astar2d.gd").new(self)
 
 func build_map(width, height):
 	grid.resize(width * height)
@@ -25,47 +23,58 @@ func build_map(width, height):
 	for i in range(grid.size()):
 		if not get_cell(index_to_vec(i)):
 			var cell = Cell.new()
-			cell.id = astar.get_available_point_id()
 			cell.pos = index_to_vec(i)
 			
 			grid[i] = cell
-			astar.add_point(cell.id, cell.pos)
 
-func connect_point(pos):
-	var cell = get_cell(pos)
-	if not cell:
+func get_path(start_pos, end_pos):
+	var start_cell = get_cell(start_pos)
+	var end_cell = get_cell(end_pos)
+	if not start_cell or not end_cell:
 		return
 	
-	cell.is_connected = true
+	var frontier = [[start_cell, 0]]
+	var came_from = {}
+	var cost_so_far = {}
+	came_from[start_cell] = null
+	cost_so_far[start_cell] = 0
 	
-	for dir in neighbor_dirs:
-		var check_cell = get_cell(cell.pos + dir)
-		if not check_cell:
-			continue
+	while not frontier.empty():
+		var current_cell = frontier.front()[0]
+		frontier.pop_front()
 		
-		if check_cell.is_connected and not are_cells_connected(cell, check_cell):
-			astar.connect_points(cell.id, check_cell.id)
-
-func disconnect_point(pos):
-	var cell = get_cell(pos)
-	if not cell:
-		return
-	
-	cell.is_connected = false
-	
-	for dir in neighbor_dirs:
-		var check_cell = get_cell(cell.pos + dir)
-		if not check_cell:
-			continue
+		if current_cell == end_cell:
+			break
 		
-		if are_cells_connected(cell, check_cell):
-			astar.disconnect_points(cell.id, check_cell.id)
+		for dir in neighbor_dirs:
+			var next_cell = get_cell(current_cell.pos + dir)
+			if not next_cell:
+				continue
+			
+			var new_cost = field.connected_cost(start_cell, next_cell) + cost_so_far[current_cell]
+			
+			if field.can_pass(start_cell, next_cell)\
+			and (not cost_so_far.has(next_cell) or new_cost < cost_so_far[next_cell]):
+				cost_so_far[next_cell] = new_cost
+				
+				frontier.append([next_cell, new_cost])
+				frontier.sort_custom(self, "_sort_priority")
+				
+				came_from[next_cell] = current_cell
+	
+	var results = [end_cell.pos]
+	var current_cell = end_cell
+	while current_cell != start_cell:
+		if not came_from.has(current_cell):
+			return []
+			
+		current_cell = came_from[current_cell]
+		results.push_front(current_cell.pos)
+	
+	return results
 
-func get_path(start, end):
-	var start_cell = get_cell(start)
-	var end_cell = get_cell(end)
-	if start_cell and end_cell:
-		return astar.get_point_path(start_cell.id, end_cell.id)
+func _sort_priority(a, b):
+	return a[1] < b[1]
 
 func get_connected_cells(start_pos, max_distance):
 	var start_cell = get_cell(start_pos)
@@ -87,7 +96,6 @@ func get_connected_cells(start_pos, max_distance):
 			
 			if next_distance <= max_distance\
 			and not distance.has(next_cell)\
-			and are_cells_connected(current_cell, next_cell)\
 			and field.can_pass(start_cell, next_cell):
 				frontier.append(next_cell)
 				distance[next_cell] = next_distance
@@ -111,12 +119,6 @@ func get_range_cells(start_pos, cell_range):
 	
 	return results
 
-func are_cells_connected(cella, cellb):
-	return astar.are_points_connected(cella.id, cellb.id)
-
-func get_cell_id(id):
-	return get_cell(astar.get_point_pos(id))
-
 func get_cell(pos):
 	if rect.has_point(pos):
 		return grid[vec_to_index(pos)]
@@ -130,7 +132,6 @@ func vec_to_index(vec):
 	return (vec.y * width) + vec.x
 
 class Cell:
-	var id = -1
 	var type = -1
 	var pos = Vector2()
 	var is_walkable = true

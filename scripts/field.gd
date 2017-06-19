@@ -38,7 +38,6 @@ func build_map(template, spawn_units=true):
 		var cell = map.grid[i]
 		var tile = template.get_tile(cell.pos)
 		cell.type = tile
-		map.connect_point(cell.pos)
 		
 		if tile == map.TILE_BUILDING:
 			var build = preload("res://scripts/objects/building.gd").new()
@@ -170,6 +169,16 @@ func get_connected_range_cells(start_pos, position_array, cell_range):
 	
 	return results
 
+func get_path_cost(obj, path):
+	var total = 0
+	var start = map.get_cell(obj.map_pos)
+	for i in range(1, path.size()):
+		var p = path[i]
+		var next = map.get_cell(p)
+		total += connected_cost(start, next)
+	
+	return total
+
 func map_to_world_center(pos):
 	return map_to_world(pos) + get_cell_size() * 0.5
 
@@ -183,13 +192,13 @@ func can_pass(start_cell, next_cell):
 	if objects.has(start_cell.pos):
 		var obj = objects[start_cell.pos]
 		
+		if not obj.aspects & obj.aspect.FLYING and not next_cell.is_walkable:
+			return false
+		
 		if objects.has(next_cell.pos):
 			var next_obj = objects[next_cell.pos]
 			if obj.team != next_obj.team:
 				return false
-		
-		if not obj.aspects & obj.aspect.FLYING and not next_cell.is_walkable:
-			return false
 	
 	return true
 

@@ -168,7 +168,7 @@ func object_move(obj, move_pos):
 		if owner.field.move_object(obj, move_pos):
 			
 			var path = owner.field.map.get_path(start_pos, move_pos)
-			obj.movement -= path.size() - 1
+			obj.movement -= owner.field.get_path_cost(obj, path)
 			
 			if obj.movement <= 0:
 				var has_valid_target = false
