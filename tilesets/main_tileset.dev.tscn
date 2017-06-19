@@ -1,182 +1,195 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=23 format=1]
 
-[ext_resource path="res://assets/sprites/tiles/floor.png" type="Texture" id=1]
+[ext_resource path="res://assets/shaders/tileset_water.tres" type="CanvasItemMaterial" id=1]
+[ext_resource path="res://assets/sprites/tiles/ground/ground0.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/tiles/ground/ground1.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/tiles/ground/ground2.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/tiles/ground/ground3.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/tiles/ground/ground4.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/tiles/ground/ground5.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/tiles/ground/ground6.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/tiles/ground/ground7.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/tiles/ground/ground8.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/tiles/ground/ground9.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/tiles/ground/ground10.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/tiles/ground/ground11.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/tiles/ground/ground12.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/tiles/ground/ground13.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/tiles/ground/ground14.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/tiles/ground/ground15.png" type="Texture" id=17]
+[ext_resource path="res://assets/sprites/tiles/ground/ground16.png" type="Texture" id=18]
+[ext_resource path="res://assets/sprites/tiles/ground/ground17.png" type="Texture" id=19]
+[ext_resource path="res://assets/sprites/tiles/ground/ground18.png" type="Texture" id=20]
+[ext_resource path="res://assets/sprites/tiles/ground/ground19.png" type="Texture" id=21]
+[ext_resource path="res://assets/sprites/tiles/ground/ground20.png" type="Texture" id=22]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Grass1" type="Sprite" parent="."]
 
-texture = ExtResource( 1 )
+material/material = ExtResource( 1 )
+texture = ExtResource( 2 )
 centered = false
-region = true
-region_rect = Rect2( 0, 0, 96, 64 )
+region_rect = Rect2( 0, 0, 96, 72 )
 
 [node name="Grass2" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( 64, 0 )
-texture = ExtResource( 1 )
+texture = ExtResource( 3 )
 centered = false
-region = true
-region_rect = Rect2( 96, 0, 96, 64 )
+region_rect = Rect2( 96, 0, 96, 72 )
 
 [node name="Grass3" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( 128, 0 )
-texture = ExtResource( 1 )
+texture = ExtResource( 4 )
 centered = false
-region = true
-region_rect = Rect2( 192, 0, 96, 64 )
+region_rect = Rect2( 192, 0, 96, 72 )
 
 [node name="Grass4" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( 192, 0 )
-texture = ExtResource( 1 )
+texture = ExtResource( 5 )
 centered = false
-region = true
-region_rect = Rect2( 288, 0, 96, 64 )
+region_rect = Rect2( 288, 0, 96, 72 )
 
 [node name="Building" type="Sprite" parent="."]
 
-transform/pos = Vector2( 192, 0 )
-texture = ExtResource( 1 )
+material/material = ExtResource( 1 )
+transform/pos = Vector2( 256, 0 )
+texture = ExtResource( 6 )
 centered = false
-region = true
-region_rect = Rect2( 384, 0, 96, 64 )
+region_rect = Rect2( 384, 0, 96, 72 )
 
 [node name="Road1" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( -32, 32 )
-texture = ExtResource( 1 )
+texture = ExtResource( 7 )
 centered = false
-region = true
-region_rect = Rect2( 480, 0, 96, 64 )
+region_rect = Rect2( 0, 72, 96, 72 )
 
 [node name="Road2" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( 32, 32 )
-texture = ExtResource( 1 )
+texture = ExtResource( 8 )
 centered = false
-region = true
-region_rect = Rect2( 576, 0, 96, 64 )
+region_rect = Rect2( 96, 72, 96, 72 )
 
 [node name="Road3" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( 96, 32 )
-texture = ExtResource( 1 )
+texture = ExtResource( 9 )
 centered = false
-region = true
-region_rect = Rect2( 672, 0, 96, 64 )
+region_rect = Rect2( 192, 72, 96, 72 )
 
 [node name="Road4" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( 160, 32 )
-texture = ExtResource( 1 )
+texture = ExtResource( 10 )
 centered = false
-region = true
-region_rect = Rect2( 768, 0, 96, 64 )
+region_rect = Rect2( 288, 72, 96, 72 )
 
 [node name="Road5" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( 224, 32 )
-texture = ExtResource( 1 )
+texture = ExtResource( 11 )
 centered = false
-region = true
-region_rect = Rect2( 864, 0, 96, 64 )
+region_rect = Rect2( 384, 72, 96, 72 )
 
 [node name="Road6" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( -64, 64 )
-texture = ExtResource( 1 )
+texture = ExtResource( 12 )
 centered = false
-region = true
-region_rect = Rect2( 0, 64, 96, 64 )
+region_rect = Rect2( 0, 144, 96, 72 )
 
 [node name="Road7" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( 0, 64 )
-texture = ExtResource( 1 )
+texture = ExtResource( 13 )
 centered = false
-region = true
-region_rect = Rect2( 96, 64, 96, 64 )
+region_rect = Rect2( 96, 144, 96, 72 )
 
 [node name="Road8" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( 64, 64 )
-texture = ExtResource( 1 )
+texture = ExtResource( 14 )
 centered = false
-region = true
-region_rect = Rect2( 192, 64, 96, 64 )
+region_rect = Rect2( 192, 144, 96, 72 )
 
 [node name="Road9" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( 128, 64 )
-texture = ExtResource( 1 )
+texture = ExtResource( 15 )
 centered = false
-region = true
-region_rect = Rect2( 288, 64, 96, 64 )
+region_rect = Rect2( 288, 144, 96, 72 )
 
 [node name="Road10" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( 192, 64 )
-texture = ExtResource( 1 )
+texture = ExtResource( 16 )
 centered = false
-region = true
-region_rect = Rect2( 384, 64, 96, 64 )
+region_rect = Rect2( 384, 144, 96, 72 )
 
 [node name="Road11" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( -96, 96 )
-texture = ExtResource( 1 )
+texture = ExtResource( 17 )
 centered = false
-region = true
-region_rect = Rect2( 480, 64, 96, 64 )
+region_rect = Rect2( 0, 216, 96, 72 )
 
 [node name="Road12" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( -32, 96 )
-texture = ExtResource( 1 )
+texture = ExtResource( 18 )
 centered = false
-region = true
-region_rect = Rect2( 576, 64, 96, 64 )
+region_rect = Rect2( 96, 216, 96, 72 )
 
 [node name="Road13" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( 32, 96 )
-texture = ExtResource( 1 )
+texture = ExtResource( 19 )
 centered = false
-region = true
-region_rect = Rect2( 672, 64, 96, 64 )
+region_rect = Rect2( 192, 216, 96, 72 )
 
 [node name="Road14" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( 96, 96 )
-texture = ExtResource( 1 )
+texture = ExtResource( 20 )
 centered = false
-region = true
-region_rect = Rect2( 768, 64, 96, 64 )
+region_rect = Rect2( 288, 216, 96, 72 )
 
 [node name="Road15" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( 160, 96 )
-texture = ExtResource( 1 )
+texture = ExtResource( 21 )
 centered = false
-region = true
-region_rect = Rect2( 864, 64, 96, 64 )
+region_rect = Rect2( 384, 216, 96, 72 )
 
 [node name="Road16" type="Sprite" parent="."]
 
+material/material = ExtResource( 1 )
 transform/pos = Vector2( -128, 128 )
-texture = ExtResource( 1 )
+texture = ExtResource( 22 )
 centered = false
-region = true
-region_rect = Rect2( 0, 128, 96, 64 )
-
-[node name="Forest1" type="Sprite" parent="."]
-
-transform/pos = Vector2( -64, 128 )
-texture = ExtResource( 1 )
-centered = false
-region = true
-region_rect = Rect2( 96, 128, 96, 64 )
+region_rect = Rect2( 0, 288, 96, 72 )
 
 
