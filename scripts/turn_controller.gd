@@ -30,12 +30,7 @@ func start_round(team_a, team_b):
 	
 	emit_signal("round_start")
 	
-	var timer = Timer.new()
-	owner.add_child(timer)
-	timer.set_wait_time(0.5)
-	timer.start()
-	yield(timer, "timeout")
-	timer.queue_free()
+	yield(global.create_timer(0.5), "timeout")
 	
 	start_turn()
 

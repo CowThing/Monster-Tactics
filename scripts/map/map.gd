@@ -135,4 +135,4 @@ class Cell:
 	var type = -1
 	var pos = Vector2()
 	var is_walkable = true
-	var is_connected = false
+	var is_connected = true

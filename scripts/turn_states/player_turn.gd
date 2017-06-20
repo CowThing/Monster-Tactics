@@ -62,12 +62,7 @@ func do_press(pos, right_click):
 				if turn_controller.object_move(selected_object, target_pos):
 					select_object(target_pos, false)
 					if check_end_turn():
-						var timer = Timer.new()
-						add_child(timer)
-						timer.set_wait_time(0.5)
-						timer.start()
-						yield(timer, "timeout")
-						timer.queue_free()
+						yield(global.create_timer(0.5), "timeout")
 						end_turn()
 				
 			elif field.can_object_attack(selected_object, target_pos):

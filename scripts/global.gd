@@ -13,6 +13,16 @@ func _ready():
 		if not dir.dir_exists("maps"):
 			dir.make_dir("maps")
 
+func create_timer(delay):
+	var t = Timer.new()
+	t.set_wait_time(delay)
+	t.set_one_shot(true)
+	add_child(t)
+	
+	t.connect("timeout", t, "queue_free")
+	t.start()
+	return t
+
 func get_user_maps():
 	var list = []
 	

@@ -102,12 +102,7 @@ func start_turn():
 			if action.function == "object_move":
 				if ret:
 					# Can move
-					var timer = Timer.new()
-					add_child(timer)
-					timer.set_wait_time(0.5)
-					timer.start()
-					yield(timer, "timeout")
-					timer.queue_free()
+					yield(global.create_timer(0.5), "timeout")
 				
 			else:
 				if ret != null and typeof(ret) != TYPE_BOOL and ret extends GDFunctionState:
